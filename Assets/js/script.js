@@ -14,8 +14,14 @@ function displayRows() {
   for (i = 0; i <= 8; i++) {
     var rowTime = i + timeStart;
     var curHourParse = JSON.parse(curHour);
+    var savedData = JSON.parse(localStorage.getItem(rowTime + ":00"));
+
 
     var timeClass;
+
+    if (savedData === null) {
+      savedData = "";
+    }
 
     if (curHourParse === rowTime) {
       timeClass = "present";
@@ -30,30 +36,27 @@ function displayRows() {
 
     plannerDisplay.append(`<div id="planRow" class="row time-block ${timeClass}">
       <div class= "col-2 col-md-1 hour text-center py-3">${rowTime}:00</div>
-  <textarea id="textArea${rowTime}" class="col-8 col-md-10 description captureText" rows="3"> </textarea>
+  <textarea id="textArea${rowTime}" class="col-8 col-md-10 description captureText" rows="3">${savedData}</textarea>
   <button class="btn saveBtn col-2 col-md-1" aria-label="save">
     <i class="fas fa-save" aria-hidden="true"></i>
   </button>
 </div>`);
-
-
-
   }
 }
 
 plannerDisplay.on("click", ".saveBtn", function () {
   console.log("this button works!");
-  // var time = 
-  // console.log(time);
-  // var value;
-  // localStorage.setItem(time, JSON.stringify(value))
 
+  var timeSave = $(this).siblings('.hour').text();
+  var textSave = $(this).siblings('textarea').val();
+  console.log(textSave);
+  localStorage.setItem(timeSave, JSON.stringify(textSave));
 
 });
 
 
-$(function () {
-});
+// $(function () {
+// });
 
 
 
