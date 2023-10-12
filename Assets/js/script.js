@@ -3,17 +3,12 @@ var curDay = dayjs();
 var curHour = curDay.format("h");
 var plannerDisplay = $('#plannerDisplay');
 var planRow = $("#planRow");
-
-var timeStart = 9;               // dayjs().hour(9).format("H");
+var timeStart = 9;  // dayjs().hour(9).format("H");
 console.log(timeStart);
 
 
-curDayDisplay.text(curDay.format("ddd, DD MMM, YYYY"));
+curDayDisplay.text(curDay.format("dddd, MMM D, YYYY"));
 displayRows();
-
-var now = (curHour === "7");
-console.log(now);
-
 
 function displayRows() {
   for (i = 0; i <= 8; i++) {
@@ -35,45 +30,55 @@ function displayRows() {
 
     plannerDisplay.append(`<div id="planRow" class="row time-block ${timeClass}">
       <div class= "col-2 col-md-1 hour text-center py-3">${rowTime}:00</div>
-  <textarea id="textArea${rowTime}" class="col-8 col-md-10 description" rows="3"> </textarea>
+  <textarea id="textArea${rowTime}" class="col-8 col-md-10 description captureText" rows="3"> </textarea>
   <button class="btn saveBtn col-2 col-md-1" aria-label="save">
     <i class="fas fa-save" aria-hidden="true"></i>
   </button>
 </div>`);
+
+
+
   }
 }
 
 plannerDisplay.on("click", ".saveBtn", function () {
-  console.log("JOEY IS A POOP");
+  console.log("this button works!");
+  // var time = 
+  // console.log(time);
+  // var value;
+  // localStorage.setItem(time, JSON.stringify(value))
+
+
 });
 
-// functions needed: 
-// renderpage - keeps page updated 
 
-
-
-
-
-
-
-
-/*
-<div id="planRow" class="row time-block past">
-  <div class="col-2 col-md-1 hour text-center py-3">  </div>
-  <textarea class="col-8 col-md-10 description" rows="3"> </textarea>
-  <button class="btn saveBtn col-2 col-md-1" aria-label="save">
-    <i class="fas fa-save" aria-hidden="true"></i>
-  </button>
-</div> 
-*/
-
-// 
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
 $(function () {
 });
 
+
+
+
+
+
+// GIVEN I am using a daily planner to create a schedule
+// WHEN I open the planner
+// THEN the current day is displayed at the top of the calendar
+// WHEN I scroll down
+// THEN I am presented with timeblocks for standard business hours of 9am & ndash; 5pm
+// WHEN I view the timeblocks for that day
+// THEN each timeblock is color coded to indicate whether it is in the past, present, or future
+// WHEN I click into a timeblock
+// THEN I can enter an event
+// WHEN I click the save button for that timeblock
+// THEN the text for that event is saved in local storage
+// WHEN I refresh the page
+// THEN the saved events persist
+
+
+
+// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
+// the code isn't run until the browser has finished rendering all the elements
+// in the html.
 // past present future
 // TODO: Add a listener for click events on the save button. This code should
 // use the id in the containing time-block as a key to save the user input in
